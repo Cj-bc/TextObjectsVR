@@ -1,0 +1,64 @@
+* TextObjects VR
+
+This is my PoC implementation for experimental VR text manipulation method.
+
+** What is this?
+This demonstrates combination of textobjects from vim and VR hand manipulation.
+Im' quite not sure if this is a good design, but I just wanted to try this by myself.
+
+** How to use
+When you enter this VR application, you will see bunch of texts shown.
+Your controller, both hands, have been assigned to one of textobejcts
+such as "word", "line", "sentence", etc. 
+
+It is re-assignable in VR(not yet), and exactly one textobject is
+assigned as _current-textobject_. You can switch them by some sort of
+actions (undefined yet). I think it is better to assign them temporary
+rather than persistently because vim does that way.
+
+
+If you find something interesting in the buffer, you can directly
+"select" them by grabbing it. current-textobject is used for calculating
+range to grab.
+
+When you grab textobject, you have two options: extend it, or do some operation.
+
+To extend it, you should move your hand to left or right whichever you
+want to extend.  It ignores any vertical movement so that you do not
+acctidentally select texts above or below crrent selection. If you
+move your hand to left, previous textobject will be appended to the
+selection. If you move yor hand to right, next textobject will be
+appended to it.
+
+
+To execute operation, just do some gestures. In order to delete
+selecting textobjects (discard them completely), just throw them
+out. In order to copy them, touch the yank pallete and release them
+quietly. In order to kill them (copy and discard them at once), touch
+the yank pallete and throw them out.
+
+
+In order to yank them, select desired item in yank-pallete and point 
+
+
+
+
+You can do various modification tasks such as inserting, yanking,
+killing, deleting, appending, etc by simple grabbing and some
+gestures.
+
+
+
+** Concepts
+As I am vimmer, I am highly inspired by vim. I like its concepts used
+for text manipulation, especially TextObjects and operators.
+Even though there are some complainments about them(e.g. order of txtobjs and verbs),
+I believe concept of textObject is highly usable.
+
+And also, I am not satisified with current VR text manipulations. I
+cannot believe virtual keyboards that mimics ordinary qwerty keyboards
+is the best way for text manipulation.
+
+Therefore, I am here to tie them together to apply 
+
+** Quick docs for vimmers

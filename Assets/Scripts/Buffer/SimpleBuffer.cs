@@ -5,13 +5,13 @@ using UnityEngine;
 /// Stores text as is. Not sufficient.
 public class SimpleBuffer : IBuffer
 {
-    private string content;
+    private string raw;
 
     public SimpleBuffer(string initial) {
-	content = initial;
+	raw = initial;
     }
 
     public string Contents() {
-	return content;
+	return raw;
     }
 }

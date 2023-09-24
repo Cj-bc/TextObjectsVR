@@ -3,9 +3,6 @@
 /// </summary>
 public interface IBuffer
 {
-    /// <summary>Current point (Cursor position in the buffer)</summary>
-    public int point {get; set; }
-
     /// <summary>End of buffer point</summary>
     public int endPoint {get; }
 

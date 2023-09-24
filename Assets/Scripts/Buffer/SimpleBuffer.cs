@@ -14,4 +14,13 @@ public class SimpleBuffer : IBuffer
     public string Contents() {
 	return raw;
     }
+
+    public bool Insert(int pos, string str) {
+	if (pos < 0 || raw.Length <= pos) {
+	    return false;
+	}
+
+	raw = raw.Insert(pos, str);
+	return true;
+    }
 }

@@ -10,11 +10,14 @@ public class BufferUI : MonoBehaviour
 
     private IBuffer buf;
     private TextMeshProUGUI text;
+
+    [SerializeField] private string stringOnEmpty;
+
     // Start is called before the first frame update
     void Start()
     {
 	text = GetComponent<TextMeshProUGUI>();
-	buf = new SimpleBuffer("Hi! This is just a test text\nwith some <i>rich texts</i>");
+	buf = new SimpleBuffer(stringOnEmpty);
 	Redraw();
     }
 

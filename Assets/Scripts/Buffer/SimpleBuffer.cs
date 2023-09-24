@@ -7,6 +7,8 @@ public class SimpleBuffer : IBuffer
 {
     private string raw;
 
+    public int endPoint => raw.Length - 1;
+
     public SimpleBuffer(string initial) {
 	raw = initial;
     }

@@ -1,5 +1,5 @@
-public struct Word : ITextObject {
 
+public struct TOWord : ITextObject {
     public int? findBeginning(IBuffer buf, int point) {
 	var str = buf.Contents();
 	str.IndexOf(" ", point);

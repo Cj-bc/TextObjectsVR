@@ -4,6 +4,11 @@ public struct Word : ITextObject {
 	var str = buf.Contents();
 	str.IndexOf(" ", point);
 
+	for (int i = point; i >= 0; i--) {
+	    if (str[i] == ' ') {
+		return i;
+	    }
+	}
 	return 0;
     }
 

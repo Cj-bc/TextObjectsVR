@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,32 @@ public class SimpleBuffer : IBuffer
 
     public string Contents() {
 	return raw;
+    }
+
+    public string Substring(int beg, int end) {
+	return raw.Substring(beg, end - beg);
+    }
+
+    public int? FindCharNext(char c) {
+	return FindCharNext((nc) => nc == c, 0, raw.Length - 1);
+    }
+
+    public int? FindCharNext(Func<char, bool> pred) {
+	return FindCharNext(pred, 0, raw.Length - 1);
+    }
+
+    public int? FindCharNext(Func<char, bool> pred, int startIdx) {
+	return FindCharNext(pred, startIdx, raw.Length - 1);
+    }
+
+    public int? FindCharNext(Func<char, bool> pred, int startIdx, int endIdx) {
+	for (int i = startIdx; i <= endIdx; i++) {
+	    if (pred(raw[i])) {
+		return i;
+	    }
+	}
+
+	return null;
     }
 
     public bool Insert(int pos, string str) {

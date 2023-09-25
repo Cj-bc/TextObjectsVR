@@ -12,11 +12,9 @@ public class BufferUI : MonoBehaviour
 
     private IBuffer buf;
     private TextMeshProUGUI text;
+    private EditorManager manager;
 
     [SerializeField] private string stringOnEmpty;
-
-    // This is temporary declared as field, but should be given by interactor(or something) in the future.
-    private ITextObject textObj;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +22,7 @@ public class BufferUI : MonoBehaviour
 	text = GetComponent<TextMeshProUGUI>();
 	buf = new SimpleBuffer(stringOnEmpty);
 
-	textObj = new TOWord();
+	manager = GameObject.FindWithTag("Player").GetComponent<EditorManager>();
 
 	Redraw();
     }
@@ -48,12 +46,8 @@ public class BufferUI : MonoBehaviour
 	if (idx != -1) {
 	    Debug.Log($"Intersected at {idx}, which is {text.text[idx]}");
 
-	    // find word
-	    var beg = textObj.findBeginning(buf, idx);
-	    var end = textObj.findEnd(buf, idx);
-
-	    if (beg is int begV && end is int endV) {
-		Debug.Log($"Selected word: {buf.Substring(begV, endV)}");
+	    if (manager.ApplyTextObject(buf, idx) is string ret) {
+		Debug.Log($"Selected text: {ret}");
 	    }
 	}
     }

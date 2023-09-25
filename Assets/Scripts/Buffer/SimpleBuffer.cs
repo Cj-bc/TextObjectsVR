@@ -22,20 +22,20 @@ public class SimpleBuffer : IBuffer
 	return raw.Substring(beg, end - beg);
     }
 
-    public int? FindCharNext(char c) {
-	return FindCharNext((nc) => nc == c, 0, raw.Length - 1);
+    public int? FindCharForward(char c) {
+	return FindCharForward((nc) => nc == c, 0, raw.Length - 1);
     }
 
-    public int? FindCharNext(Func<char, bool> pred) {
-	return FindCharNext(pred, 0, raw.Length - 1);
+    public int? FindCharForward(Func<char, bool> pred) {
+	return FindCharForward(pred, 0, raw.Length - 1);
     }
 
-    public int? FindCharNext(Func<char, bool> pred, int startIdx) {
-	return FindCharNext(pred, startIdx, raw.Length - 1);
+    public int? FindCharForward(Func<char, bool> pred, int startIdx) {
+	return FindCharForward(pred, startIdx, raw.Length - 1);
     }
 
-    public int? FindCharNext(Func<char, bool> pred, int startIdx, int endIdx) {
-	for (int i = startIdx; i <= endIdx; i++) {
+    public int? FindCharForward(Func<char, bool> pred, int startIdx, int limit) {
+	for (int i = startIdx; i <= limit; i++) {
 	    if (pred(raw[i])) {
 		return i;
 	    }

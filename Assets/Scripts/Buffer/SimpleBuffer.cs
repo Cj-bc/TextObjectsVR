@@ -44,6 +44,15 @@ public class SimpleBuffer : IBuffer
 	return null;
     }
 
+    public int? FindCharBackward(Func<char, bool> pred, int startIdx, int limit) {
+	for (int i = startIdx; limit <= i; i--) {
+	    if (pred(raw[i])) {
+		return i;
+	    }
+	}
+	return null;
+    }
+
     public bool Insert(int pos, string str) {
 	if (pos < 0 || raw.Length <= pos) {
 	    return false;

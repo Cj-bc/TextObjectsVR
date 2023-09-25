@@ -26,7 +26,12 @@ public interface IBuffer
     /// <param name="limit">a buffer position that bounds the
     /// search. This is term from emacs's re-search-forward.</param>
     public int? FindCharForward(Func<char, bool> pred, int startIdx, int limit);
-    /// return its point when found, null otherwise.
-    /// both end are inclusive.
+
+    /// <summary>Find Character backward by <param>pred</param> and
+    /// return its point when found, null otherwise.  both end are
+    /// inclusive.
     /// </summary>
+    /// <param name="limit">a buffer position that bounds the
+    /// search. This is term from emacs's re-search-forward.</param>
+    public int? FindCharBackward(Func<char, bool> pred, int startIdx, int limit);
 }

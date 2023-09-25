@@ -19,7 +19,7 @@ public class SimpleBuffer : IBuffer
     }
 
     public string Substring(int beg, int end) {
-	return raw.Substring(beg, end - beg);
+	return raw.Substring(beg, end - beg + 1);
     }
 
     public int? FindCharForward(char c) {

@@ -15,11 +15,16 @@ public class BufferUI : MonoBehaviour
 
     [SerializeField] private string stringOnEmpty;
 
+    // This is temporary declared as field, but should be given by interactor(or something) in the future.
+    private ITextObject textObj;
+
     // Start is called before the first frame update
     void Start()
     {
 	text = GetComponent<TextMeshProUGUI>();
 	buf = new SimpleBuffer(stringOnEmpty);
+
+	textObj = new TOWord();
 
 	Redraw();
     }
@@ -44,9 +49,8 @@ public class BufferUI : MonoBehaviour
 	    Debug.Log($"Intersected at {idx}, which is {text.text[idx]}");
 
 	    // find word
-	    var word = new Word();
-	    var beg = word.findBeginning(buf, idx);
-	    var end = word.findEnd(buf, idx);
+	    var beg = textObj.findBeginning(buf, idx);
+	    var end = textObj.findEnd(buf, idx);
 
 	    if (beg != null && end != null) {
 		Debug.Log($"Selected word: {buf.Contents().Substring(beg ?? 0,(end ?? 0)-(beg ?? 0))}");

@@ -1,11 +1,11 @@
+using System;
 
 public struct TOWord : ITextObject {
     public int? findBeginning(IBuffer buf, int point) {
 	var str = buf.Contents();
-	str.IndexOf(" ", point);
 
 	for (int i = point; i >= 0; i--) {
-	    if (str[i] == ' ') {
+	    if (Char.IsWhiteSpace(str[i])) {
 		return i;
 	    }
 	}
@@ -15,10 +15,11 @@ public struct TOWord : ITextObject {
     public int? findEnd(IBuffer buf, int point) {
 	var str = buf.Contents();
 
-	/// TODO: Use Char.IsSeparator or something to identify all other separators
-	/// <ref>https://learn.microsoft.com/en-us/dotnet/api/system.char.isseparator?view=net-7.0</ref>
-	var idx = str.IndexOf(" ", point);
-
-	return idx == -1 ? null : idx;
+	for (int i = point; i < str.Length; i++) {
+	    if (Char.IsWhiteSpace(str[i])) {
+		return i;
+	    }
+	}
+	return str.Length - 1;
     }
 }

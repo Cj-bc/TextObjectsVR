@@ -52,8 +52,8 @@ public class BufferUI : MonoBehaviour
 	    var beg = textObj.findBeginning(buf, idx);
 	    var end = textObj.findEnd(buf, idx);
 
-	    if (beg != null && end != null) {
-		Debug.Log($"Selected word: {buf.Contents().Substring(beg ?? 0,(end ?? 0)-(beg ?? 0))}");
+	    if (beg is int begV && end is int endV) {
+		Debug.Log($"Selected word: {buf.Substring(begV, endV)}");
 	    }
 	}
     }
